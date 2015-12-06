@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping default-access="field">
+	
+	<class name="com.xpense.master.bo.UserGroupBO" table="TBL_GROUP">
+
+	<!-- Start Base Fields -->
+		<id name="id" column="ID" type="long" length="19">
+			<generator class="identity"/>
+		</id>
+		<version name="version" column="VERSION" type="integer" access="field" />
+	<!-- End Base Fields -->
+	
+	<!-- Start User defined Fields -->
+		<property name="groupCode" column="GROUPCODE" not-null="true" type="string" length="50" />
+		<property name="groupName" column="GROUPNAME" not-null="true" type="string" length="50" />
+		<property name="noOfUsers" column="NOOFUSERS" type="long" not-null="true"  length="19"/>
+		<property name="userId" column="USERID" type="long" not-null="true"  length="19"/>
+		<!-- 
+		<many-to-one name="creator" class="com.xpense.master.bo.UserBO">
+			<column name="userid"></column>
+		</many-to-one>
+		 -->	
+		<set name="groupDtls" table="TBL_GROUP_DET" fetch="join" lazy="true" inverse="false" cascade="save-update">
+			<key>
+				<column name="groupid"></column>
+			</key>
+			<one-to-many class="com.xpense.master.bo.UserGroupDtlsBO"/>
+		</set>
+		
+	<!-- End User defined Fields -->
+	
+	<!-- Start MakerChecker Fields -->
+		<property name="lastStatus" column="LASTSTATUS" not-null="true" type="string" length="20" />
+		<property name="createdBy" column="CREATEDBY" not-null="true" type="string" length="20" />
+		<property name="createdDate" column="CREATEDDATE" not-null="true" type="date"/>
+		<property name="modifiedBy" column="MODIFIEDBY" not-null="false" type="string" length="20" />
+		<property name="modifiedDate" column="MODIFIEDDATE" not-null="false" type="date"/>
+	<!-- End  MakerChecker Fields -->
+	
+	<!-- Start Master Fields -->
+	<property name="active" column="ACTIVE" not-null="true" type="yes_no" length="20" />
+	<property name="enabled" column="ENABLED" not-null="true" type="yes_no" length="20" />
+	<property name="effectiveFrom" column="EFFECTIVEFROM" not-null="true" type="date"/>
+	<property name="effectiveTill" column="EFFECTIVETILL" not-null="false" type="date"/>
+	<!-- Start Master Fields -->
+	
+	</class>
+</hibernate-mapping>

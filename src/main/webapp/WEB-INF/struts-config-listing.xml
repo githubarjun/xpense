@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+  <data-sources />
+  
+  <form-beans>
+  </form-beans>
+  
+   <global-exceptions>
+  		<exception key="error" 
+  		type="java.lang.Exception"
+  		path="/../Error.jsp"
+  		></exception>
+  </global-exceptions>
+  
+  <global-forwards>
+  
+  	<forward name="listPage" path="/ListContent.jsp"></forward>
+  
+  </global-forwards>	
+  
+  <action-mappings>
+  	
+  	<action path="/toModule" type="org.apache.struts.actions.SwitchAction"></action>
+
+	<action path="/userGroupList" parameter="method" type="com.xpense.listing.action.UserGroupList"></action>
+	
+	<action path="/groupTransactionList" parameter="method" type="com.xpense.listing.action.GroupTransactionList"></action>
+	
+	
+  </action-mappings>
+  
+  <message-resources parameter="com.base.struts.ApplicationResources" />
+</struts-config>

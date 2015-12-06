@@ -1,0 +1,126 @@
+drop table xpense.TBL_USER;
+create table xpense.TBL_USER
+(
+	id		int(19) not null auto_increment,
+	version		int(19) not null,
+
+	username	varchar(50) not null,
+	password	varchar(50) not null,
+	
+	laststatus	varchar(10),
+	createdby	varchar(50),
+	createddate	date,
+	modifiedby	varchar(50),
+	modifieddate	date,
+	
+	active		char(1),
+	enabled		char(1),
+	effectivefrom	Date,
+	effectivetill	Date,
+  PRIMARY KEY(id)
+);
+
+
+drop table xpense.TBL_GROUP;
+create table xpense.TBL_GROUP
+(
+	id		int(19) not null auto_increment,
+	version		int(19) not null,
+
+	groupcode	varchar(50) not null,
+	groupname	varchar(100) not null,
+	noofusers	int (19) not null,
+	userid		int(19) not null,
+		
+	laststatus	varchar(10),
+	createdby	varchar(50),
+	createddate	date,
+	modifiedby	varchar(50),
+	modifieddate	date,
+	
+	active		char(1),
+	enabled		char(1),
+	effectivefrom	Date,
+	effectivetill	Date,
+  PRIMARY KEY(id)
+);
+
+
+
+drop table xpense.TBL_GROUP_DET;
+create table xpense.TBL_GROUP_DET
+(
+	id		int(19) not null auto_increment,
+	version		int(19) not null,
+
+	name		varchar(100) not null,
+	userid		int(19),
+	groupid		int(19),
+
+	laststatus	varchar(10),
+	createdby	varchar(50),
+	createddate	date,
+	modifiedby	varchar(50),
+	modifieddate	date,
+	
+	active		char(1),
+	enabled		char(1),
+	effectivefrom	Date,
+	effectivetill	Date,
+  PRIMARY KEY(id)
+);
+
+
+drop table xpense.TBL_GROUP_EVENT;
+create table xpense.TBL_GROUP_EVENT
+(
+	id		int(19) not null auto_increment,
+	version		int(19) not null,
+
+	groupId		int(19),
+	groupName	varchar(50),
+	createrId	int(19),
+	createrName	varchar(50),
+	eventCreatedOn	date,
+	eventDescription	varchar(500),
+	totalTransactionAmount	decimal(19,8),
+
+	laststatus	varchar(10),
+	createdby	varchar(50),
+	createddate	date,
+	modifiedby	varchar(50),
+	modifieddate	date,
+	
+  PRIMARY KEY(id)
+);
+
+
+drop table xpense.TBL_TXN_DET;
+create table xpense.TBL_TXN_DET
+(
+	id		int(19) not null auto_increment,
+	version		int(19) not null,
+
+	eventid		int(19),	
+	groupUserId	int(19),
+	paidAmount		decimal(19,8),
+	contributionAmount	decimal(19,8),
+	differenceAmount	decimal(19,8),
+
+	laststatus	varchar(10),
+	createdby	varchar(50),
+	createddate	date,
+	modifiedby	varchar(50),
+	modifieddate	date,
+  PRIMARY KEY(id)
+)
+
+
+
+
+
+
+
+
+
+

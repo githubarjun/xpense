@@ -1,0 +1,77 @@
+@CHARSET "ISO-8859-1";
+
+body{
+	font-size: 100%;
+	font-family: sans-serif;
+}
+.navigation, .header, .footer{
+	width: 100%;
+}
+.navigation{
+	background-color: fuchsia;
+	min-height: 20px;
+}
+.header{
+	height: 100px;
+	background : url(../image/aRJUN2.png) no-repeat;
+}
+.footer{
+	height: 5px;
+	background-color: red;
+}
+.navigation ul li{
+	width: 33%;
+	display: inline;
+	list-style: none;
+}
+.header,.navigation,.footer{
+	clear: both;
+}
+
+img{
+	max-width: 100%;
+}
+
+@media screen and (min-width:481px){
+
+	
+	#menu{
+	width: 25%;
+	height : 200px;
+	float: left;
+	background-color: olive;
+	}	
+	#content{
+		margin-left:25%;
+		width: 50%;
+		height : 200px;
+		background-color: orange;
+	}
+	#news{
+		width: 25%;
+		height : 200px;
+		float: right;
+		background-color: teal;
+	}
+	
+}
+
+@media screen and (max-width:480px){
+	
+	#menu{
+		width: 100%;
+		height : 200px;
+		background-color: olive;
+	}
+	#content{
+		width: 100%;
+		height : 200px;
+		background-color: orange;
+	}
+	#news{
+		width: 100%;
+		height : 200px;
+		background-color: teal;
+	}	
+	
+}

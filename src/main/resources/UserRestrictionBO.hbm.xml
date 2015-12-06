@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping default-access="field">
+	
+	<class name="com.xpense.master.bo.UserRestrictionBO" table="TBL_USER">
+
+	<!-- Start Base Fields -->
+		<id name="id" column="ID" type="long" length="19">
+			<generator class="foreign">
+				<param name="property">user</param>
+			</generator>
+		</id>
+		<version name="version" column="VERSION" type="integer" access="field" />
+	<!-- End Base Fields -->
+
+	<!-- Start GroupRestrictionBO defined Fields -->
+		<property name="canCreateEvent" column="CANCREATEEVENT" type="yes_no" length="1" />
+		<property name="canInvite" column="CANINVITE" type="yes_no" length="1" />
+		<one-to-one name="user" class="com.xpense.masters.bo.UserBO" constrained="true"></one-to-one>
+	<!-- End GroupRestrictionBO defined Fields -->
+
+	<!-- Start MakerChecker Fields -->
+		<property name="lastStatus" column="LASTSTATUS" not-null="true" type="string" length="20" />
+		<property name="createdBy" column="CREATEDBY" not-null="true" type="string" length="20" />
+		<property name="createdDate" column="CREATEDDATE" not-null="true" type="date"/>
+		<property name="modifiedBy" column="MODIFIEDBY" not-null="false" type="string" length="20" />
+		<property name="modifiedDate" column="MODIFIEDDATE" not-null="false" type="date"/>
+	<!-- End  MakerChecker Fields -->
+	
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+  <data-sources />
+  
+  <form-beans>
+  	<form-bean name="SpendingReportForm" type="com.xpense.report.form.SpendingReportForm"></form-bean>
+  	<form-bean name="SettlementReportForm" type="com.xpense.report.form.SettlementReportForm"></form-bean>
+  </form-beans>
+  
+   <global-exceptions>
+  		<exception key="error" 
+  		type="java.lang.Exception"
+  		path="/../Error.jsp"
+  		></exception>
+  </global-exceptions>
+  
+  <global-forwards>
+  </global-forwards>
+  
+  <action-mappings>
+  	
+  	<action path="/toModule" type="org.apache.struts.actions.SwitchAction"></action>
+  
+  	<action path="/showMenu" parameter="method" type="com.xpense.login.action.MenuAction">
+  		<forward name="MainMenu" path="/toModule.do?prefix=/jsp/xpense&amp;page=/MainMenu.jsp"></forward>
+  	</action>
+  	
+  	<action path="/spendingReport" input="/SpendingReportForm.jsp" name="SpendingReportForm" attribute="SpendingReportForm" parameter="method" scope="request" type="com.xpense.report.action.SpendingReportAction">
+		<forward name="SpendingReportForm" path="/toModule.do?prefix=/jsp/report&amp;page=/SpendingReportForm.jsp"></forward>
+  	</action>
+  	
+  	<action path="/settlementReport" input="/SettlementReportForm.jsp" name="SettlementReportForm" attribute="SettlementReportForm" parameter="method" scope="request" type="com.xpense.report.action.SettlementReportAction">
+	  	<forward name="SettlementReportForm" path="/toModule.do?prefix=/jsp/report&amp;page=/SettlementReportForm.jsp"></forward>
+  	</action>
+  	
+  </action-mappings>
+  
+  <message-resources parameter="com.base.struts.ApplicationResources" />
+</struts-config>
+

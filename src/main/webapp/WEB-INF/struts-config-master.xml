@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+  <data-sources />
+  
+  <form-beans>
+	<form-bean name="UserForm" type="com.xpense.master.form.UserForm"></form-bean>
+	<form-bean name="UserGroupForm" type="com.xpense.master.form.UserGroupForm"></form-bean>
+	<form-bean name="UserGroupDtlsForm" type="com.xpense.master.form.UserGroupDtlsForm"></form-bean>
+  </form-beans>
+  
+   <global-exceptions>
+  		<exception key="error" 
+  		type="java.lang.Exception"
+  		path="/../Error.jsp"
+  		></exception>
+  </global-exceptions>
+  
+  <global-forwards>
+  </global-forwards>	
+  
+  <action-mappings>
+  	
+  	<action path="/toModule" type="org.apache.struts.actions.SwitchAction"></action>
+	<action path="/user" input="/UserForm.jsp" name="UserForm" attribute="UserForm" parameter="method" scope="request" type="com.xpense.master.action.UserAction">
+  		<forward redirect="true" name="LoginPage" path="/toModule.do?prefix=&amp;page=/jsp/Login.jsp"></forward>
+  	</action>
+	
+	<action path="/userGroup" input="/UserGroupForm.jsp" name="UserGroupForm" attribute="UserGroupForm" parameter="method" scope="session" type="com.xpense.master.action.UserGroupAction">
+		<forward name="UserGroupForm" path="/toModule.do?prefix=/jsp/master&amp;page=/UserGroupForm.jsp"></forward>
+		<forward name="UserGroupView" path="/toModule.do?prefix=/jsp/master&amp;page=/UserGroupView.jsp"></forward>
+  		<forward redirect="true" name="UserGroupList" path="/toModule.do?prefix=/jsp/listing&amp;page=/userGroupList.do&amp;method=list"></forward>
+	</action>
+  
+  	<action path="/userGroupDtls" input="/UserGroupDtlsForm.jsp" name="UserGroupDtlsForm" attribute="UserGroupDtlsForm" parameter="method" scope="request" type="com.xpense.master.action.UserGroupDtlsAction">
+  		<forward  name="UserGroupDtlsForm" path="/toModule.do?prefix=/jsp/master&amp;page=/UserGroupDtlsForm.jsp"></forward>
+  		<forward  name="UserGroupDtlsView" path="/toModule.do?prefix=/jsp/master&amp;page=/UserGroupDtlsView.jsp"></forward>
+  	</action>
+  
+  </action-mappings>
+  
+  <message-resources parameter="com.base.struts.ApplicationResources" />
+</struts-config>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+  <data-sources />
+  
+  <form-beans>
+  	<form-bean name="LoginForm" type="com.xpense.login.form.LoginForm"></form-bean>
+  </form-beans>
+  
+  <global-exceptions>
+  		<exception key="error" 
+  		type="java.lang.Exception"
+  		path="/jsp/Error.jsp"
+  		></exception>
+  </global-exceptions>
+  
+  <global-forwards>
+  </global-forwards>
+  
+  <action-mappings>
+  	
+  	<action path="/toModule" type="org.apache.struts.actions.SwitchAction"></action>
+  
+  	<action path="/login" input="/jsp/Login.jsp" name="LoginForm" attribute="LoginForm" parameter="method" scope="request" type="com.xpense.login.action.LoginAction">
+  		<forward redirect="true" name="MainMenu" path="/toModule.do?prefix=&amp;page=/jsp/Welcome.jsp"></forward>
+  		<forward name="NewUser" path="/toModule.do?prefix=/jsp/master&amp;page=/UserForm.jsp"></forward>
+  		<forward redirect="true" name="LoginPage" path="/toModule.do?prefix=&amp;page=/jsp/Login.jsp"></forward>
+  	</action>
+
+	<action path="/logout" parameter="method" scope="request" type="com.xpense.login.action.LoginAction">
+  		<forward name="Logout" path="/toModule.do?prefix=&amp;page=/jsp/Logout.jsp"></forward>
+  	</action>
+
+  </action-mappings>
+  
+  <message-resources parameter="com.base.struts.ApplicationResources" />
+</struts-config>
